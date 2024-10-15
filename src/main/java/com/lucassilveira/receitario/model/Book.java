@@ -13,6 +13,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+//
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -36,6 +38,6 @@ public class Book {
     private Employee editor;
 
     @OneToMany(mappedBy = "title")
-    private List<Publication> publicacoes;
+    private List<Publication> publications;
 
 }

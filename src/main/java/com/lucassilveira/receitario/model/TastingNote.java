@@ -13,8 +13,9 @@ public class TastingNote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "note ")
+    @Column(name = "note")
     private double note;
 }

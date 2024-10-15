@@ -48,5 +48,5 @@ public class Recipe {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recipe_category_id")
-    private Category category;
+    private RecipeCategory recipeCategory;
 }
