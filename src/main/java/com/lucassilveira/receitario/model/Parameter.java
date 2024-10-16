@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 @Table(name = "parameter")
 public class Parameter {
 
+    // Attributes
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,4 +28,39 @@ public class Parameter {
 
     @Column(name = "production_qty")
     private int prodQty;
-}
+
+    // Getters and Setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getProdMonth() {
+        return prodMonth;
+    }
+
+    public void setProdMonth(int prodMonth) {
+        this.prodMonth = prodMonth;
+    }
+
+    public int getProdYear() {
+        return prodYear;
+    }
+
+    public void setProdYear(int prodYear) {
+        this.prodYear = prodYear;
+    }
+
+    public int getProdQty() {
+        return prodQty;
+    }
+
+    public void setProdQty(int prodQty) {
+        this.prodQty = prodQty;
+    }
+
+} // Parameter Entity

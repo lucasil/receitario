@@ -14,8 +14,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ingredient")
-public class Ingredient {
+@Table(name = "dish_category")
+public class DishCategory {
 
     // Attributes
 
@@ -28,12 +28,12 @@ public class Ingredient {
     private String name;
 
     @Nullable
-    @Column(name = "decription")
+    @Column(name = "description")
     private String description;
 
     // Relationship
 
-    @OneToMany(mappedBy = "ingredient",
+    @OneToMany(mappedBy = "dishCategory",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private List<Dish> dishes;
@@ -72,4 +72,4 @@ public class Ingredient {
         this.dishes = dishes;
     }
 
-} // Ingredient Entity
+} // Dish Category Entity
