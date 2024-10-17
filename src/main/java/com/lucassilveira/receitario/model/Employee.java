@@ -71,17 +71,17 @@ public class Employee {
                 cascade = CascadeType.ALL)
     private List<WorkingReference> workingReferences;
 
-    @OneToMany(mappedBy = "employee",
+    @OneToMany(mappedBy = "tasterEmployee",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private List<TastingSession> tastingSessions;
 
-    @OneToMany(mappedBy = "employee",
+    @OneToMany(mappedBy = "chefEmployee",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private List<Recipe> recipes;
 
-    @OneToMany(mappedBy = "employee",
+    @OneToMany(mappedBy = "editorEmployee",
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private List<Book> books;
