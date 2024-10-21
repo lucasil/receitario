@@ -71,6 +71,7 @@ public class Employee {
     @Column(name = "salary")
     private BigDecimal salary;
     
+    @NotBlank
     @Temporal(TemporalType.DATE)
     @Column(name = "adm_date")
     private LocalDate admissionDate;

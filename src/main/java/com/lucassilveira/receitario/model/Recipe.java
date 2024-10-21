@@ -16,6 +16,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "recipe")
@@ -28,15 +30,25 @@ public class Recipe {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "Insira o nome da receita")
+    @Size(min = 3,
+            max = 100,
+            message = "O nome da receita deve ter entre 3 e 100 caracteres")
     @Column(name = "name")
     private String name;
 
+    @NotBlank(message = "Insira o nome do ingrediente")
+    @Size(min = 3,
+            max = 100,
+            message = "O ingrediente deve ter entre 3 e 100 caracteres")
     @Column(name = "preparation_method")
     private String preparationMethod;
 
+    @NotBlank(message = "Insira o número de porções")
     @Column(name = "portion")
     private int portion;
 
+    @NotBlank(message = "Insira o tempo de preparo")
     @Column(name = "preparation_time")
     private int preparationTime;
 

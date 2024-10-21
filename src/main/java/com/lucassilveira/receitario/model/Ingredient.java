@@ -26,7 +26,7 @@ public class Ingredient {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "Insira um ingrediente")
+    @NotBlank(message = "Insira o nome do ingrediente")
     @Size(min = 3,
             max = 100,
             message = "O ingrediente deve ter entre 3 e 100 caracteres")

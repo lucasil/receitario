@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "recipe_media")
@@ -29,6 +30,8 @@ public class RecipeMedia {
     private byte[] media;
 
     @Nullable
+    @Size(max = 500, 
+            message = "O texto alternativo não deve ter maiq que 500 caracteres")
     @Column(name = "alternative_text")
     private String altText;
 

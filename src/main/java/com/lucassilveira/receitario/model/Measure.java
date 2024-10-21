@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "measure")
@@ -22,7 +24,10 @@ public class Measure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
+    
+    @NotBlank(message = "Insira um tipo de medida")
+    @Size(max = 100,
+            message = "A medida deve ter no máximo 100 caracteres")
     @Column(name = "name", unique = true)
     private String name;
 
