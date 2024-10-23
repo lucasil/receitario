@@ -1,0 +1,20 @@
+@keyframes backgroundChange {
+    0% {background-image: url(../images/background1.jpg);}
+    20% {background-image: url(../images/background2.jpg);}
+    40% {background-image: url(../images/background3.jpg);}
+    60% {background-image: url(../images/background4.jpg);}
+    80% {background-image: url(../images/background5.jpg);}
+    100% {background-image: url(../images/background6.jpg);}
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    animation: backgroundChange 120s infinite;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
