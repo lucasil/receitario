@@ -1,0 +1,38 @@
+body{
+    justify-content: flex-end;
+}
+
+.content{
+    background-color: #F9F9F9;
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    margin: 0;
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#dados{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+
+}
+
+#dados input[type="text"], #dados input[type="password"]{
+    width: 100%;
+    height: 7vh;
+    padding-left: 10px;
+    font-size: 1.1em;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+}
