@@ -111,3 +111,17 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }
+
+#btn_primary{
+    background-color: #FFC300;
+    font-family: "MontserratSemiBold";
+    color: #B5651D;
+}
+
+#ptn_primary:hover{
+    background-color: #FFE180;
+}
+
+#link{
+    color: #B5651D;
+}
