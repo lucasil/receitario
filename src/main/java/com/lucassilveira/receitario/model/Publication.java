@@ -36,13 +36,15 @@ public class Publication {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "book_id", nullable = true)
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipe_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "recipe_id", nullable = true)
     private Recipe recipe;
 
     // Getters and Setters

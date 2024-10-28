@@ -38,13 +38,15 @@ public class RecipeMedia {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipe_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "recipe_id", nullable = true)
     private Recipe recipe;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "media_type_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "media_type_id", nullable = true)
     private MediaType mediaType;
 
     // Getters and Setters

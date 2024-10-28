@@ -43,13 +43,15 @@ public class WorkingReference {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "employee_id", nullable = true)
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "restaurant_id", nullable = true)
     private Restaurant restaurant;
 
     // Getters and Setters

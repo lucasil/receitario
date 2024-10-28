@@ -62,8 +62,9 @@ public class Recipe {
     // Getters and Setters
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "chef_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "chef_id", nullable = true)
     private Employee chefEmployee;
 
     @OneToMany(mappedBy = "recipe",

@@ -89,8 +89,9 @@ public class Employee {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "role_id", nullable = true)
     private Role role;
 
     @OneToMany(mappedBy = "employee",

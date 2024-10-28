@@ -51,8 +51,9 @@ public class Book {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "editor_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "editor_id", nullable = true)
     private Employee editorEmployee;
 
     @OneToMany(mappedBy = "book", 

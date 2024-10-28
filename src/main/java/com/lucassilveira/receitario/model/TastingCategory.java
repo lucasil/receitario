@@ -12,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tasting_category")
@@ -24,10 +26,16 @@ public class TastingCategory {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "Insira o nome de uma categoria")
+    @Size(min = 3,
+            max = 100,
+            message = "A categoria deve ter entre 3 e 100 caracteres")
     @Column(name = "name")
     private String name;
 
     @Nullable
+    @Size(max = 500, 
+            message = "A descrição não deve ter mais de 500 caracteres")
     @Column(name = "description")
     private String description;
 

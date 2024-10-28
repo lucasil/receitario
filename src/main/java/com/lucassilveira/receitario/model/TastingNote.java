@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tasting_note")
@@ -22,19 +23,22 @@ public class TastingNote {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "Insira a nota")
     @Column(name = "note")
     private double note;
 
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "tasting_category_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "tasting_category_id", nullable = true)
     private TastingCategory tastingCategory;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "tasting_session_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "tasting_session_id", nullable = true)
     private TastingSession tastingSession;
 
     // Getters and Setters

@@ -30,23 +30,27 @@ public class Dish {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "measure_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "measure_id", nullable = true)
     private Measure measure;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "ingredient_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "ingredient_id", nullable = true)
     private Ingredient ingredient;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "dish_category")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "dish_category", nullable = true)
     private DishCategory dishCategory;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipe_id")
+                cascade = CascadeType.ALL,
+                optional = true)
+    @JoinColumn(name = "recipe_id", nullable = true)
     private Recipe recipe;
 
     // Getters and Setters

@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
@@ -22,24 +24,30 @@ public class User {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "Insira um nome de usuário")
+    @Size(min = 3,
+            max = 50,
+            message = "O nome de usuário deve ter entre 3 e 50 caracteres")
     @Column(name = "username", unique = true)
     private String username;
 
+    @NotBlank(message = "Insira uma senha")
+    @Size(min = 3,
+            max = 50,
+            message = "A senha deve ter entre 3 e 50 caracteres")
     @Column(name = "password")
     private String password;
 
+    @NotBlank(message = "Insira um e-mail válido")
     @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "active")
     private Boolean active;
 
-    // Relationship
-
-    @OneToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    // Relationship 
+    
+    // -- Relacionamento com a entidade Employee
 
     // Getters and Setters
 

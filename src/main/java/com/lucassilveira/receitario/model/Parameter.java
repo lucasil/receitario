@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 // OK
 
@@ -20,9 +21,11 @@ public class Parameter {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "O mês não pode estar em branco")
     @Column(name = "production_month")
     private int prodMonth;
 
+    @NotBlank(message = "O ano não pode estar em branco")
     @Column(name = "production_year")
     private int prodYear;
 
