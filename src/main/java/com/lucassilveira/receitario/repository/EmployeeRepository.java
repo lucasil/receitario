@@ -7,5 +7,5 @@ import com.lucassilveira.receitario.model.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-
+    Employee findByUsername(String username);
 } // Employee Repository

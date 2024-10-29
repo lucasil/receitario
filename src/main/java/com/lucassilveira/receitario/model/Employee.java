@@ -15,12 +15,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -71,7 +71,7 @@ public class Employee {
     @Column(name = "salary")
     private BigDecimal salary;
     
-    @NotBlank
+    @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "adm_date")
     private LocalDate admissionDate;
@@ -81,12 +81,28 @@ public class Employee {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    // Relationship
+    @NotBlank(message = "Insira um nome de usuário")
+    @Size(min = 3,
+            max = 50,
+            message = "O nome de usuário deve ter entre 3 e 50 caracteres")
+    @Column(name = "username", unique = true)
+    private String username;
 
-    @OneToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @NotBlank(message = "Insira uma senha")
+    @Size(min = 3,
+            max = 50,
+            message = "A senha deve ter entre 3 e 50 caracteres")
+    @Column(name = "password")
+    private String password;
+
+    @NotBlank(message = "Insira um e-mail válido")
+    @Column(name = "email", unique = true)
+    private String email;
+
+    @Column(name = "active")
+    private Boolean active;
+
+    // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL,
@@ -113,6 +129,7 @@ public class Employee {
                 fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     private List<Book> books;
+
 
     // Getters and Setters
 
@@ -148,6 +165,14 @@ public class Employee {
         this.rg = rg;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public BigDecimal getSalary() {
         return salary;
     }
@@ -172,12 +197,36 @@ public class Employee {
         this.endDate = endDate;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Role getRole() {
