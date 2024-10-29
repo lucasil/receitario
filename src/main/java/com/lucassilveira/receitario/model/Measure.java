@@ -2,7 +2,6 @@ package com.lucassilveira.receitario.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "measure")
@@ -26,16 +24,14 @@ public class Measure {
     private int id;
     
     @NotBlank(message = "Insira um tipo de medida")
-    @Size(max = 100,
-            message = "A medida deve ter no máximo 100 caracteres")
-    @Column(name = "name", unique = true)
+    @Column(name = "name", 
+            unique = true)
     private String name;
 
     // Relationship
 
     @OneToMany(mappedBy = "measure",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<Dish> dishes;
 
     // Getters and Setters

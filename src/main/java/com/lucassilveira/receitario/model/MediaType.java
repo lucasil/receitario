@@ -2,7 +2,6 @@ package com.lucassilveira.receitario.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "media_type")
@@ -26,16 +24,13 @@ public class MediaType {
     private int id;
 
     @NotBlank(message = "Insira um tipo de mídia")
-    @Size(max = 100,
-            message = "O ingrediente deve ter entre 3 e 100 caracteres")
     @Column(name = "description")
     private String description;
 
     // Relationship
 
     @OneToMany(mappedBy = "mediaType",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<RecipeMedia> recipeMedias;
 
     // Getters and Setters

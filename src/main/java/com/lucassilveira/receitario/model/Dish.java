@@ -1,6 +1,5 @@
 package com.lucassilveira.receitario.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,28 +28,28 @@ public class Dish {
 
     // Relationship
 
-    @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
+    @ManyToOne(fetch = FetchType.EAGER, 
                 optional = true)
-    @JoinColumn(name = "measure_id", nullable = true)
+    @JoinColumn(name = "measure_id", 
+                nullable = true)
     private Measure measure;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "ingredient_id", nullable = true)
+    @JoinColumn(name = "ingredient_id",
+                nullable = true)
     private Ingredient ingredient;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "dish_category", nullable = true)
+    @JoinColumn(name = "dish_category", 
+                nullable = true)
     private DishCategory dishCategory;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "recipe_id", nullable = true)
+    @JoinColumn(name = "recipe_id",
+                nullable = true)
     private Recipe recipe;
 
     // Getters and Setters

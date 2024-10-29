@@ -7,5 +7,5 @@ import com.lucassilveira.receitario.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-
+    Role findById(int id);
 } // Role Repository

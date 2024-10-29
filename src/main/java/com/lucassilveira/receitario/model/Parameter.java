@@ -8,8 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
-// OK
-
 @Entity
 @Table(name = "parameter")
 public class Parameter {

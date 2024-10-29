@@ -1,6 +1,5 @@
 package com.lucassilveira.receitario.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,15 +29,15 @@ public class TastingNote {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "tasting_category_id", nullable = true)
+    @JoinColumn(name = "tasting_category_id", 
+                nullable = true)
     private TastingCategory tastingCategory;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "tasting_session_id", nullable = true)
+    @JoinColumn(name = "tasting_session_id", 
+                nullable = true)
     private TastingSession tastingSession;
 
     // Getters and Setters

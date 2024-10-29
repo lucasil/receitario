@@ -1,7 +1,6 @@
 package com.lucassilveira.receitario.model;
 
 import io.micrometer.common.lang.Nullable;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "recipe_media")
@@ -30,23 +28,21 @@ public class RecipeMedia {
     private byte[] media;
 
     @Nullable
-    @Size(max = 500, 
-            message = "O texto alternativo não deve ter maiq que 500 caracteres")
     @Column(name = "alternative_text")
     private String altText;
 
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "recipe_id", nullable = true)
+    @JoinColumn(name = "recipe_id", 
+                nullable = true)
     private Recipe recipe;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "media_type_id", nullable = true)
+    @JoinColumn(name = "media_type_id", 
+                nullable = true)
     private MediaType mediaType;
 
     // Getters and Setters

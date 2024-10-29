@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import io.micrometer.common.lang.Nullable;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,7 +16,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tasting_session")
@@ -35,8 +33,6 @@ public class TastingSession {
     private LocalDate tastingDate;
 
     @Nullable
-    @Size(max = 500, 
-            message = "O comentário não deve ter mais de 500 caracteres")
     @Column(name = "comment")
     private String comment;
 
@@ -47,20 +43,19 @@ public class TastingSession {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "taster_id", nullable = true)
+    @JoinColumn(name = "taster_id", 
+                nullable = true)
     private Employee tasterEmployee;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "recipe_id", nullable = true)
+    @JoinColumn(name = "recipe_id", 
+                nullable = true)
     private Recipe recipe;
 
     @OneToMany(mappedBy = "tastingSession",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<TastingNote> tastingNotes;
 
     // Getters and Setters

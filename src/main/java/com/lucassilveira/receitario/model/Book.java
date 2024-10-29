@@ -3,7 +3,6 @@ package com.lucassilveira.receitario.model;
 import java.util.List;
 
 import io.micrometer.common.lang.Nullable;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,8 +14,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "book")
@@ -30,35 +27,28 @@ public class Book {
     private int id;
 
     @NotBlank(message = "Insira um título para o livro")
-    @Size(min = 3,
-            max = 100,
-            message = "O título deve ter entre 3 e 100 caracteres")
     @Column(name = "title")
     private String title;
 
     @Nullable
-    @Size(max = 500, 
-            message = "A descrição não deve ter mais de 500 caracteres")
     @Column(name = "description")
     private String description;
 
     @Nullable
-    @Pattern(regexp = "^(97(8|9))?\\d{9}(\\d|X)$", 
-                message = "O ISBN deve ser válido (ISBN-10 ou ISBN-13)")
-    @Column(name = "isbn", unique = true)
+    @Column(name = "isbn", 
+            unique = true)
     private String isbn;
 
     // Relationship
 
-    @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
+    @ManyToOne(fetch = FetchType.EAGER, 
                 optional = true)
-    @JoinColumn(name = "editor_id", nullable = true)
+    @JoinColumn(name = "editor_id", 
+                nullable = true)
     private Employee editorEmployee;
 
     @OneToMany(mappedBy = "book", 
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<Publication> publications;
 
     // Getters and Setters

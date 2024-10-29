@@ -3,7 +3,6 @@ package com.lucassilveira.receitario.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,7 +16,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "recipe")
@@ -31,16 +29,10 @@ public class Recipe {
     private int id;
 
     @NotBlank(message = "Insira o nome da receita")
-    @Size(min = 3,
-            max = 100,
-            message = "O nome da receita deve ter entre 3 e 100 caracteres")
     @Column(name = "name")
     private String name;
 
     @NotBlank(message = "Insira o nome do ingrediente")
-    @Size(min = 3,
-            max = 100,
-            message = "O ingrediente deve ter entre 3 e 100 caracteres")
     @Column(name = "preparation_method")
     private String preparationMethod;
 
@@ -62,29 +54,25 @@ public class Recipe {
     // Getters and Setters
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "chef_id", nullable = true)
+    @JoinColumn(name = "chef_id", 
+                nullable = true)
     private Employee chefEmployee;
 
     @OneToMany(mappedBy = "recipe",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<Publication> publications;
     
     @OneToMany(mappedBy = "recipe",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<TastingSession> tastingSessions;
 
     @OneToMany(mappedBy = "recipe",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<RecipeMedia> recipeMedias;
 
     @OneToMany(mappedBy = "recipe",
-                fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL)
+                fetch = FetchType.LAZY)
     private List<Dish> dishes;
 
     // Getters and Setters

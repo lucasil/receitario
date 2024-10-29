@@ -3,7 +3,6 @@ package com.lucassilveira.receitario.model;
 import java.time.LocalDate;
 
 import io.micrometer.common.lang.Nullable;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -43,15 +42,15 @@ public class WorkingReference {
     // Relationship
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
                 optional = true)
-    @JoinColumn(name = "employee_id", nullable = true)
+    @JoinColumn(name = "employee_id", 
+                nullable = true)
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
-                optional = true)
-    @JoinColumn(name = "restaurant_id", nullable = true)
+                optional = false)
+    @JoinColumn(name = "restaurant_id", 
+                nullable = false)
     private Restaurant restaurant;
 
     // Getters and Setters
