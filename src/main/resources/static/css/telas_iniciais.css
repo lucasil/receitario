@@ -26,8 +26,3 @@ body{
     color: #B6B6B6;
     font-family: "MontserratMediumItalic";
 }
-
-#dados input[type="checkbox"]{
-    border: 1px solid #B6B6B6;
-    border-radius: 10px;
-}
