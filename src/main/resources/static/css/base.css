@@ -116,12 +116,23 @@ body{
     background-color: #FFC300;
     font-family: "MontserratSemiBold";
     color: #B5651D;
+    border: 0px;
 }
 
-#ptn_primary:hover{
+#btn_primary:hover{
     background-color: #FFE180;
 }
 
 #link{
     color: #B5651D;
+}
+
+#btn_secondary{
+    font-family: "MontserratMedium";
+    color: #B5651D;
+    border-color: #B5651D !important;
+}
+
+#btn_secondary:hover{
+    border-color: #ffc490 !important;
 }
