@@ -21,15 +21,19 @@
                 
                 <div class="container mb-3">
                     <p id="txt_tela_inicial">Para redefinir sua senha, por favor, informe seu endereço de e-mail. Um link de redefinição será enviado para você.</p>
-                    <input type="email" name="email" class="form-control form-control-lg" id="" placeholder="Digite seu e-mail">
+                    <input type="email" name="email" class="form-control form-control-lg" id="" placeholder="Digite seu e-mail" required>
                 </div>
                 
                 <div class="container d-flex justify-content-between" id="submit">
-                    <a href="login.html" class="btn btn-outline-secondary border border-2 col-4" id="btn_secondary">Voltar</a>
-                    <button class="btn btn-primary col-6" id="btn_primary" type="submit">Enviar e-mail</button>
+                    <a th:href="@{/login}" class="btn btn-outline-secondary border border-2 col-4" id="btn_secondary">Voltar</a>
+                    <button class="btn btn-primary col-6" id="btn_primary" type="submit">Enviar link de redefinição</button>
                 </div>
             
             </form>
+
+            <div th:if="${param.success}">
+                <p>Um link de redefinição de senha foi enviado para o seu e-mail.</p>
+            </div>
 
         </div>
     
