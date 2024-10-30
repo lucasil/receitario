@@ -22,7 +22,13 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/login", "/css/**", "/js/**").permitAll() // Permitir acesso a "/" e "/home" sem autenticação
+                .requestMatchers("/login", 
+                                    "/recover",
+                                    "/reset-password",
+                                    "/reset-password-success", 
+                                    "/css/**", 
+                                    "/js/**", 
+                                    "/reset-password").permitAll() // Permitir acesso sem autenticação
                 .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
             )   
             .formLogin((form) -> form
