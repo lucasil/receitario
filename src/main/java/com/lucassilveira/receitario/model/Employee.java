@@ -76,6 +76,9 @@ public class Employee {
             unique = true)
     private String email;
 
+    @Nullable
+    private String resetToken; // armazena o token de redefinição de senha
+
     @Column(name = "active")
     private Boolean active;
 
@@ -191,6 +194,14 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
     }
 
     public Boolean getActive() {
