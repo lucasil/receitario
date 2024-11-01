@@ -18,6 +18,12 @@ public class UserService {
     @Autowired
     private EmailService emailService;
 
+    public boolean isValidToken(String token) {
+        // Verifica se o token existe e se é válido
+        Employee employee = employeeRepository.findByResetToken(token);
+        return employee != null;
+    }
+
     // Gera e envia o token de redefinição
     public void sendResetToken(String email) {
         Employee employee = employeeRepository.findByEmail(email);
@@ -37,8 +43,12 @@ public class UserService {
             employee.setPassword(encoder.encode(newPsw));
             employee.setResetToken(null);
             employeeRepository.save(employee); // salva as alterações
+            System.out.println("Senha redefinida com sucesso para o usuário: " + employee.getUsername());
             return true;
         } // fim if
+        else {
+            System.out.println("Token inválido ou expirado.");
+        } // fim else
         return false;
     }
 }

@@ -16,16 +16,20 @@ public class ResetPasswordController {
     private UserService userService;
 
     @GetMapping("/reset-password")
-    public String showResetForm(@RequestParam String token, Model model) {
-        model.addAttribute("token", token); // Passa o token para a view
+    public String showResetForm(@RequestParam("token") String token, Model model) {
+        if (!userService.isValidToken(token)) {
+            model.addAttribute("error", "Token inválido ou expirado.");
+            return "error";
+        }
+        model.addAttribute("token", token);
         return "reset-password"; // Nome do arquivo HTML sem a extensão
     }
 
     @PostMapping("/reset-password")
-    public String resetPsw(@RequestParam String new_password,
-                            @RequestParam String new_password_conf,
-                            @RequestParam String token,
-                            Model model){
+    public String resetPassword(@RequestParam("new_password") String new_password,
+                                @RequestParam("new_password_conf") String new_password_conf,
+                                @RequestParam("token") String token,
+                                Model model){
         // Verifica se as senhas são iguais
         if (!new_password.equals(new_password_conf)) {
             model.addAttribute("error", "As senhas não correspondem.");
@@ -37,7 +41,7 @@ public class ResetPasswordController {
 
         if (success) {
             model.addAttribute("success", "Senha alterada com sucesso!");
-            return "login";
+            return "reset-password-success";
         } // fim if 
         else {
             model.addAttribute("error", "Ocorreu um erro ao redefinir a senha. Verifique o token.");
