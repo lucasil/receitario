@@ -1,6 +1,10 @@
 package com.lucassilveira.receitario.service;
 
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,13 +26,13 @@ public class CustomUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuário não encontrado: " + username);
         }
 
-        // Default role if none found
-        String roleName = employee.getRole() != null ? employee.getRole().getName() : "USER";
-
+        // Extrai o nome do papel do Employee e cria a autoridade
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + employee.getRole().getName());
+        
         return org.springframework.security.core.userdetails.User.builder()
                 .username(employee.getUsername())
                 .password(employee.getPassword())
-                .roles(roleName)
+                .authorities(Collections.singleton(authority)) // Passa o papel único como autoridade
                 .build();
     }
 }

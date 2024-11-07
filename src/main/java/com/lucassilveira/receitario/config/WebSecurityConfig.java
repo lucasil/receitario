@@ -22,13 +22,11 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/login", 
-                                    "/recover",
-                                    "/reset-password",
-                                    "/reset-password-success", 
-                                    "/css/**", 
-                                    "/js/**", 
-                                    "/reset-password").permitAll() // Permitir acesso sem autenticação
+                .requestMatchers("/login", "/recover", "/reset-password", "/reset-password-success", "css/**", "/js/**").permitAll() // Permitir acesso sem autenticação
+                .requestMatchers("/admin/**"). hasRole("Administrador")
+                .requestMatchers("/chef/**"). hasRole("Cozinheiro")
+                .requestMatchers("/taster/**"). hasRole("Degustador")
+                .requestMatchers("/editor/**"). hasRole("Editor")
                 .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
             )   
             .formLogin((form) -> form
