@@ -1,7 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body, html{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.background-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+}
+
+#title{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #B5651D;
+}
+
+#dados input[type="text"]::placeholder, 
+#dados input[type="password"]::placeholder,
+#dados input[type="email"]::placeholder{
+    color: #B6B6B6;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
 #btn_primary{
     background-color: #FFC300;
-    font-family: "MontserratSemiBold";
-    color: #B5651D;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;color: #B5651D;
     border: 0px;
 }
 
@@ -10,6 +49,10 @@
 }
 
 #link{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
     color: #B5651D;
 }
 

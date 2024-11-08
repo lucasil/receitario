@@ -1,4 +1,4 @@
-@import url("base.css");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body{
     justify-content: flex-end;
@@ -24,18 +24,12 @@ body{
     justify-content: center;
 }
 
-#dados input[type="text"]::placeholder, 
-#dados input[type="password"]::placeholder,
-#dados input[type="email"]::placeholder{
-    color: #B6B6B6;
+#lembrar_info{
     font-family: "Montserrat", sans-serif;
-}
-
-#title{
-  font-family: "Montserrat", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-  color: #B5651D;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #B6B6B6;
 }
 
 #txt_tela_inicial{
