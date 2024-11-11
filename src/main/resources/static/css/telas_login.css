@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body{
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 #content{
-    background-color: #f9f9f9e3;
+    background-color: #F9F9F9;
     opacity: 0.97;
-    width: 90vw;
+    width: 45vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,9 +17,22 @@ body{
 
 .form{
     margin: 0;
-    width: 85vw;
+    width: 35vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#lembrar_info{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #B6B6B6;
+}
+
+#txt_tela_inicial{
+    font-family: "MontserratMedium";
+    color: #B6B6B6;
 }

@@ -23,7 +23,7 @@ public class CustomUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Employee employee = employeeRepository.findByUsername(username);
         if (employee == null) {
-            throw new UsernameNotFoundException("Usuário não encontrado: " + username);
+            throw new UsernameNotFoundException("Usuário não encontrado.");
         }
 
         // Extrai o nome do papel do Employee e cria a autoridade
