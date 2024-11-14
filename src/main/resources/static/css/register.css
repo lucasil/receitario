@@ -2,7 +2,7 @@
 
 #register_form {
     background-color: #F9F9F9;
-    width: 85vw;
+    width: auto;
     height: 80vh;
     display: flex;
     flex-direction: row;
@@ -13,4 +13,12 @@
     background-color: #B5651D;
     width: 30vw;
     height: 30vh;
+}
+
+#topo {
+    height: 10vh;
+}
+
+#submit {
+    height: 7vh;
 }

@@ -6,7 +6,6 @@ body{
 
 #content{
     background-color: #f9f9f9e3;
-    opacity: 0.97;
     width: 90vw;
     height: 100vh;
     display: flex;
@@ -22,4 +21,11 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+label {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    color: #B5651D;
 }
