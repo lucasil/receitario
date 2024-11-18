@@ -22,7 +22,7 @@
                 
                 <form th:action="@{/admin/register}" method="post">
                     
-                    <div class="container d-flex justify-content-between mt-5" id="topo">
+                    <div class="d-flex justify-content-between p-0 mt-5" id="topo">
                         <div class="container">
                             <h1 class="h1 mb-2" id="title">Novo Usuário</h1>
                         </div>
@@ -33,17 +33,17 @@
                         </div>
                     </div>
 
-                    <div class="container rounded" id="register_form">
+                    <div class="container rounded mb-4" id="register_form">
                         
                         <div class="container d-flex flex-column">
                             <label for="">Nome Completo</label>
                             <input type="text" name="name" th:value="${name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome completo" required>
-                            <label for="">Nome Fantasia</label>
-                            <input type="text" name="trade_name" th:value="${trade_name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome fantasia">
-                            <label for="">RG</label>
-                            <input type="text" name="rg" th:value="${rg}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
+                            <label for="">Data de Nascimento</label>
+                            <input type="date" name="birth_date" th:value="${birth_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
                             <label for="">E-mail</label>
                             <input type="email" name="rg" th:value="${email}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com" required>
+                            <label for="">Usuário</label>
+                            <input type="text" name="usename" th:value="${username}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
                             <label for="">Atribuição do Usuário</label>
                             <select class="form-select" name="" id="" aria-label="Default select example">
                                 <option selected>Atribuição</option>
@@ -51,19 +51,19 @@
                                         th:value="${role.id}"
                                         th:text="${role.name}"></option>
                             </select>
-
-                            <label for="">Data de Nascimento</label>
-                            <input type="date" name="birth_date" th:value="${birth_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
-                            
-                            <label for="">Data de Admissão</label>
-                            <input type="date" name="adm_date" th:value="${adm_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
                         </div>
 
                         <div class="container d-flex flex-column">
-                            <input type="text" name="" th:value="${name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome completo" required>
+                            <label for="">Nome Fantasia</label>
                             <input type="text" name="trade_name" th:value="${trade_name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome fantasia">
-                            <input type="text" name="rg" th:value="${rg}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG">
-                            <input type="email" name="rg" th:value="${email}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com">
+                            <label for="">RG</label>
+                            <input type="text" name="rg" th:value="${rg}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
+                            <label for="">Salário</label>
+                            <input type="text" name="salary" th:value="${salary}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com" required>
+                            <label for="">Senha</label>
+                            <input type="password" name="password" th:value="${password}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
+                            <label for="">Data de Admissão</label>
+                            <input type="date" name="adm_date" th:value="${adm_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
 
 
                         </div>
