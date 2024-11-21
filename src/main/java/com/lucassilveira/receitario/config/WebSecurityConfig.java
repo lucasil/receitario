@@ -16,7 +16,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/login", "/recover", "/reset-password", "/reset-password-success", "/css/**", "/js/**", "/images/**").permitAll() // Permitir acesso sem autenticação
+                .requestMatchers("/login", "/recover", "/reset-password", "/reset-password-success", "/css/**", "/js/**", "/images/**", "/templates/**").permitAll() // Permitir acesso sem autenticação
                 .requestMatchers("/admin/**"). hasRole("Administrador")
                 .requestMatchers("/chef/**"). hasRole("Cozinheiro")
                 .requestMatchers("/taster/**"). hasRole("Degustador")
