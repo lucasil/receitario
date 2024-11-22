@@ -4,7 +4,7 @@ body{
     justify-content: center;
 }
 
-#content{
+#conteudo{
     background-color: #f9f9f9e3;
     width: 90vw;
     height: 100vh;
@@ -14,18 +14,36 @@ body{
     align-items: center;
 }
 
-.form{
-    margin: 0;
-    width: 85vw;
-    height: 100vh;
+#dados {
+    width: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-label {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    color: #B5651D;
+#topo {
+    height: 5vh;
+    padding-inline: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+#submit {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+}
+
+#area_sistema {
+    background-color: #F9F9F9;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow-y: auto;
+    box-shadow: 1px 1px 5px 2px #b6b6b6;
 }

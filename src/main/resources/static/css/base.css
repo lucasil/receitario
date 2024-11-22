@@ -37,6 +37,7 @@ body, html{
 
 #btn_primary{
     background-color: #FFC300;
+    border-color: #FFC300 !important;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -46,6 +47,7 @@ body, html{
 
 #btn_primary:hover{
     background-color: #FFE180;
+    border-color: #FFE180 !important;
 }
 
 #link{
@@ -64,4 +66,11 @@ body, html{
 
 #btn_secondary:hover{
     background-color: #f0d9c7 !important;
+}
+
+label {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    color: #B5651D;
 }

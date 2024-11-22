@@ -11,39 +11,29 @@
 <body>
     <div class="background-container">
         <div class="w-30 p-3 container shadow p-3 mb-5 position-absolute top-0 end-0" id="content">
-            
             <div class="container form" id="dados">    
-                
                 <div class="container">
                     <h1 class="h1 mt-5" id="title">Login</h1>
                 </div>
-                
                 <!-- Exibe mensagem de erro -->
                 <div th:if="${param.error}" class="alert alert-danger align-items-center">
                     <p>Usuário ou senha inválidos</p>
                 </div>
-                
                 <form th:action="@{/login}" method="post">
-    
                     <div class="container" title="title">
                         <input type="text" name="username" th:value="${param.username}" class="form-control form-control-lg mb-2" id="" placeholder="Digite seu usuário" required>
                         <input type="password" name="password" class="form-control form-control-lg mt-2" id="inputPassword5" placeholder="Digite sua senha" required>
                     </div>
-                    
                     <div class="container form-check-inline mt-2 mb-3">
                         <input class="form-check-input" id="flexCheckDefault" type="checkbox" name="remember-me" th:checked="${username != null}">
                         <label class="form-check-label" id="lembrar_info" for="flexCheckDefault">Lembrar informações de login</label>
                     </div>
-                    
                     <div class="container d-flex justify-content-between">
                         <button class="btn btn-primary col-4" id="btn_primary" type="submit">Acessar</button>
                         <a th:href="@{/recover}" class="btn btn-link col text-end" id="link">Esqueci minha senha</a>
                     </div>
-                
                 </form>
-                
             </div>
-    
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

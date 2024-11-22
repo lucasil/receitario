@@ -35,27 +35,6 @@
   background: transparent;
 }
 
-#register_form {
-    background-color: #F9F9F9;
-    width: auto;
-    height: 80vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    overflow-y: auto;
-    box-shadow: 1px 1px 5px 2px #b6b6b6;
-}
-
-#img_user {
-    background-color: #B5651D;
-    width: 30vw;
-    height: 30vh;
-}
-
-#topo {
-    height: 10vh;
-}
-
-#submit {
-    height: 7vh;
+#coluna{
+    width: 49%;
 }

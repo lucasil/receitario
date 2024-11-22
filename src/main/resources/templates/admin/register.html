@@ -11,67 +11,72 @@
 </head>
 <body>
     <div class="background-container">
-        
-        <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="content">
-            
-            <div class="mb-5" th:insert="~{layouts/menu/admin-menu.html :: menu}"></div>
-            
-            <div class="container form" id="dados">          
-
-                <!-- Exibe mensagem de erro -->
-                <div th:if="${param.success}" class="alert alert-success align-items-center">
-                    <p>Usuário cadastrado com sucesso!</p>
+        <div th:insert="~{layouts/offcanvas/admin-offcanvas.html :: offcanvas}"></div>
+        <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="conteudo">
+            <div class="mb-5" th:insert="~{layouts/menu/admin-menu.html :: menu}"></div>    
+            <div id="dados">          
+                <div class="d-flex justify-content-between p-0 mb-2" id="topo">
+                    <div class="container ps-0 pb-0">
+                        <h1 class="h1 mb-0" id="title">Novo Usuário</h1>
+                    </div>
+                    <div class="container d-flex row justify-content-end" id="submit">
+                        <button class="btn btn-primary border border-2 w-50 me-2" id="btn_primary" type="submit">Criar Usuário</button>
+                        <a th:href="@{/}" class="btn btn-outline-secondary border border-2 w-25" id="btn_secondary">Voltar</a>
+                    </div>
                 </div>
-                
-                <form th:action="@{/admin/register}" method="post">
-                    
-                    <div class="d-flex justify-content-between p-0" id="topo">
-                        <div class="container">
-                            <h1 class="h1 mb-2" id="title">Novo Usuário</h1>
+                <div class="rounded py-2 px-4" id="area_sistema">
+                    <form class="justify-content-between w-100 d-flex flex-row" th:action="@{/admin/register}" method="post">      
+                        <div class="d-flex flex-column justify-content-between" id="coluna">
+                            <div>
+                                <label class="fs-4" for="">Nome Completo</label>
+                                <input type="text" name="name" th:value="${name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome completo" required>
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">Data de Nascimento</label>
+                                <input type="date" name="birth_date" th:value="${birth_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">E-mail</label>
+                                <input type="email" name="rg" th:value="${email}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com" required>    
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">Usuário</label>
+                                <input type="text" name="usename" th:value="${username}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">Atribuição do Usuário</label>
+                                <select class="form-select" name="" id="" aria-label="Default select example">
+                                    <option selected>Atribuição</option>
+                                    <option th:each="role : ${roles}"
+                                            th:value="${role.id}"
+                                            th:text="${role.name}"></option>
+                                </select>
+                            </div>
                         </div>
-                        
-                        <div class="container d-flex row justify-content-end" id="submit">
-                            <button class="btn btn-primary col-4 me-2" id="btn_primary" type="submit">Criar Usuário</button>
-                            <a th:href="@{/}" class="btn btn-outline-secondary border border-2 col-3" id="btn_secondary">Voltar</a>
+                        <div class="d-flex flex-column justify-content-between" id="coluna">
+                            <div>
+                                <label class="fs-4" for="">Nome Fantasia</label>
+                                <input type="text" name="trade_name" th:value="${trade_name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome fantasia">
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">RG</label>
+                                <input type="text" name="rg" th:value="${rg}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>    
+                            </div>
+                            <div>
+                                <label  class="fs-4"for="">Salário</label>
+                                <input type="text" name="salary" th:value="${salary}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com" required>
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">Senha</label>
+                                <input type="password" name="password" th:value="${password}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
+                            </div>
+                            <div>
+                                <label class="fs-4" for="">Data de Admissão</label>
+                                <input type="date" name="adm_date" th:value="${adm_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="container rounded mb-4" id="register_form">
-                        
-                        <div class="container d-flex flex-column">
-                            <label for="">Nome Completo</label>
-                            <input type="text" name="name" th:value="${name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome completo" required>
-                            <label for="">Data de Nascimento</label>
-                            <input type="date" name="birth_date" th:value="${birth_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
-                            <label for="">E-mail</label>
-                            <input type="email" name="rg" th:value="${email}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com" required>
-                            <label for="">Usuário</label>
-                            <input type="text" name="usename" th:value="${username}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
-                            <label for="">Atribuição do Usuário</label>
-                            <select class="form-select" name="" id="" aria-label="Default select example">
-                                <option selected>Atribuição</option>
-                                <option th:each="role : ${roles}"
-                                        th:value="${role.id}"
-                                        th:text="${role.name}"></option>
-                            </select>
-                        </div>
-
-                        <div class="container d-flex flex-column">
-                            <label for="">Nome Fantasia</label>
-                            <input type="text" name="trade_name" th:value="${trade_name}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o nome fantasia">
-                            <label for="">RG</label>
-                            <input type="text" name="rg" th:value="${rg}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
-                            <label for="">Salário</label>
-                            <input type="text" name="salary" th:value="${salary}" class="form-control form-control-lg mb-2" id="" placeholder="exemplo@email.com" required>
-                            <label for="">Senha</label>
-                            <input type="password" name="password" th:value="${password}" class="form-control form-control-lg mb-2" id="" placeholder="Digite o RG" required>
-                            <label for="">Data de Admissão</label>
-                            <input type="date" name="adm_date" th:value="${adm_date}" class="form-control form-control-lg mb-2" id="" placeholder="">
-
-
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
