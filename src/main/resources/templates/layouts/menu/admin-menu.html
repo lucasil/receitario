@@ -7,17 +7,19 @@
     <title>Menu Admin</title>
 </head>
 <body>
-    <div th:fragment="menu" style="margin-bottom: 7rem;">
-        <nav class="navbar navbar-light bg-light fixed-top d-flex flex-row" style="height: 10%;
-                                                                    background-color: #F9F9F9 !important;">
-            <div class="container-fluid d-flex flex-column justify-content-between" style="height: 90%;
-                                                                    width: 49%;">
+    <div th:fragment="menu" style="margin-bottom: 4rem;">
+        <nav class="navbar navbar-light bg-light fixed-top d-flex flex-row justify-content-between" style="height: 7%;
+                                                                                                            background-color: #F9F9F9 !important;">
+            <div class="container-fluid d-flex flex-column justify-content-start" style="height: 90%;
+                                                                                            width: 48%;
+                                                                                            align-items: start;">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="height: 100%;">
                     <img src="/images/menu.png" style="height: 90%;">
                 </button> 
             </div>
-            <div class="container-fluid d-flex flex-column" style="height: 90%;
-                                                                    width: 49%;">
+            <div class="container-fluid d-flex flex-row justify-content-end" style="height: 90%;
+                                                                                        width: 48%;
+                                                                                        align-items: end;">
                 <p>nome</p>
                 <p>Atribuição</p>
             </div>

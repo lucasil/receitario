@@ -14,11 +14,14 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/home}" class="nav-link active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/users}" class="nav-link">Gerenciar Usuários</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/roles}" class="nav-link">Gerenciar Atribuições</a></li>
+                    <li class="nav-item"><a th:href="@{/}" class="nav-link">Gerenciar Receitas</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/ingredients}" class="nav-link">Gerenciar Ingredientes</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/measures}" class="nav-link">Gerenciar Medidas</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/dish-categories}" class="nav-link">Gerenciar Categorias</a></li>
+                    <li class="nav-item"><a th:href="@{/}" class="nav-link">Gerenciar Livros</a></li>
                 </ul>
             </div>
         </div>
