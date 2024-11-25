@@ -75,7 +75,7 @@
                             <button></button>
                         </div>
                     </div>
-                    </form>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn btn-outline-secondary border border-2" data-bs-dismiss="modal" id="btn_secondary">Fechar</button>
@@ -105,8 +105,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="background-container">
         <div th:insert="~{layouts/offcanvas/admin-offcanvas.html :: offcanvas}"></div>
         <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="conteudo">
@@ -154,7 +152,9 @@
                                         <!-- Mostra o botão de desativação apenas se o usuário estiver ativo -->
                                         <button th:if="${employee.active}" 
                                                 th:data-id="${employee.id}" 
-                                                class="btn btn-danger deactivate-btn">Desativar</button>
+                                                class="btn btn-danger deactivate-btn"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#confirmDeactivateModal">Desativar</button>
                                         <!-- Não mostra os botões de ação para usuários desativados -->
                                         <button th:if="${!employee.active}" class="btn btn-secondary" disabled>Desativado</button>
                                     </td>
@@ -189,8 +189,9 @@
         document.querySelectorAll('.deactivate-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const employeeId = this.getAttribute('data-id');
-                document.getElementById('employeeId').value = employeeId;
-                new bootstrap.Modal(document.getElementById('confirmDeactivateModal')).show();
+                console.log("Employee ID: ", employeeId);
+                document.getElementById('employeeId').value = employeeId; // Preenche o campo oculto
+                new bootstrap.Modal(document.getElementById('confirmDeactivateModal')).show(); // Exibe o modal
             });
         });
     </script>

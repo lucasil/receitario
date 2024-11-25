@@ -100,10 +100,10 @@ public class EmployeeController {
         if (employee != null) {
             employee.setActive(false); // Desativa o usuário
             employeeRepository.save(employee); // Salva a alteração
+            model.addAttribute("employees", employeeRepository.findAll());
+            return "redirect:/admin/users?deactivated=true";
+        } else {
+            return "redirect:/admin/users?error=user-not-found";
         }
-
-        model.addAttribute("employees", employeeRepository.findAll());
-        
-        return "admin/users";
-    } 
+    }
 }
