@@ -1,5 +1,6 @@
 package com.lucassilveira.receitario.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +76,8 @@ public class EmployeeController {
         
         // Codifica a senha antes de salvar no banco
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-
         employee.setActive(true);
+
 
         // Define um papel padrão (exemplo: papel "USER")
         Role selectedRole = roleRepository.findById(roleId);
@@ -93,12 +94,17 @@ public class EmployeeController {
         return "redirect:/admin/users?success"; // Redireciona com mensagem de sucesso
     }
 
+    // Desativa um usuário
     @PostMapping("/admin/deactivate")
     public String deactivateUser(@RequestParam("id") int id, 
                                     Model model) {
         Employee employee = employeeRepository.findById(id).orElse(null);
         if (employee != null) {
             employee.setActive(false); // Desativa o usuário
+            
+            LocalDate dateNow = LocalDate.now(); 
+            employee.setEndDate(dateNow);
+
             employeeRepository.save(employee); // Salva a alteração
             model.addAttribute("employees", employeeRepository.findAll());
             return "redirect:/admin/users?deactivated=true";

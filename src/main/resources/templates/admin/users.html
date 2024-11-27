@@ -10,8 +10,8 @@
 </head>
 <body>
     <!-- Modal Cadastro de Usuário -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Inserir novo usuário</h1>
@@ -84,6 +84,83 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Editar Usuário -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuário</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="justify-content-between w-100 d-flex flex-row" th:action="@{/admin/users}" method="post" id="registerForm">      
+                    <div class="d-flex flex-column justify-content-between" id="coluna">
+                        <div>
+                            <label class="fs-4" for="name">Nome Completo</label>
+                            <input type="text" name="name" class="form-control form-control-lg mb-2" id="name" placeholder="Digite o nome completo" required>
+                        </div>
+                        <div>
+                            <label class="fs-4" for="birthDate">Data de Nascimento</label>
+                            <input type="date" name="birthDate" class="form-control form-control-lg mb-2" id="birthDate">
+                        </div>
+                        <div>
+                            <label class="fs-4" for="email">E-mail</label>
+                            <input type="email" name="email" class="form-control form-control-lg mb-2" id="email" placeholder="exemplo@email.com" required>    
+                        </div>
+                        <div>
+                            <label class="fs-4" for="username">Usuário</label>
+                            <input type="text" name="username" class="form-control form-control-lg mb-2" id="username" placeholder="Digite o usuário" required>
+                        </div>
+                        <div>
+                            <label class="fs-4" for="admissionDate">Data de Admissão</label>
+                            <input type="date" name="admissionDate" class="form-control form-control-lg mb-2" id="admissionDate" required>
+                        </div>
+                        <div>
+                            <label class="fs-4" for="endDate">Data de Encerramento</label>
+                            <input type="date" name="endDate" class="form-control form-control-lg mb-2" id="endDate">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-between" id="coluna">
+                        <div>
+                            <label class="fs-4" for="tradeName">Nome Fantasia</label>
+                            <input type="text" name="tradeName" class="form-control form-control-lg mb-2" id="tradeName" placeholder="Digite o nome fantasia">
+                        </div>
+                        <div>
+                            <label class="fs-4" for="rg">RG</label>
+                            <input type="text" name="rg" class="form-control form-control-lg mb-2" id="rg" placeholder="Digite o RG" required>    
+                        </div>
+                        <div>
+                            <label class="fs-4"for="salary">Salário</label>
+                            <input type="text" name="salary" class="form-control form-control-lg mb-2" id="salary" placeholder="R$">
+                        </div>
+                        <div>
+                            <label class="fs-4" for="password">Senha</label>
+                            <input type="password" name="password" class="form-control form-control-lg mb-2" id="password" placeholder="Digite a senha" required>
+                        </div>
+                        <div>
+                            <label class="fs-4" for="role">Atribuição do Usuário</label>
+                            <select class="form-select" name="role" id="role" aria-label="Default select example">
+                                <option selected>Atribuição</option>
+                                <option th:each="role : ${roles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.name}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <button></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn btn-outline-secondary border border-2" data-bs-dismiss="modal" id="btn_secondary">Fechar</button>
+                <button type="submit" class="btn btn-primary" form="registerForm" id="btn_primary">Criar Usuário</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal de Desativação de Usuário -->
     <div class="modal fade" id="confirmDeactivateModal" tabindex="-1" aria-labelledby="confirmDeactivateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -93,11 +170,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
-                    Tem certeza de que deseja desativar este usuário? Essa ação não pode ser revertida imediatamente.
+                    Una vez que a conta é desativada, ela não poderá ser reativada. Caso o usuário precise voltar a utilizar o sistema no futuro, será necessário criar uma nova conta para ele. Tem certeza que deseja desativar o usuário?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form action="/admin/deactivate" method="post" id="deactivateForm">
+                    <form th:action="@{/admin/deactivate}" method="post" id="deactivateForm">
                         <input type="hidden" name="id" id="employeeId">
                         <button type="submit" class="btn btn-danger">Desativar</button>
                     </form>
@@ -105,6 +182,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Tela do sistema -->
     <div class="background-container">
         <div th:insert="~{layouts/offcanvas/admin-offcanvas.html :: offcanvas}"></div>
         <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="conteudo">
@@ -115,7 +194,7 @@
                         <h1 class="h1 mb-0" id="title">Lista de Usuários</h1>
                     </div>
                     <div class="container d-flex row justify-content-end" id="submit">
-                        <button class="btn btn-primary border border-2 w-50 me-2" id="btn_primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Novo Usuário</button>
+                        <button class="btn btn-primary border border-2 w-50 me-2" id="btn_primary" data-bs-toggle="modal" data-bs-target="#registerModal">Novo Usuário</button>
                         <a th:href="@{/admin/home}" class="btn btn-outline-secondary border border-2 w-25" id="btn_secondary">Voltar</a>
                     </div>
                 </div>
@@ -148,7 +227,11 @@
                                         <span th:text="${employee.active ? 'Ativo' : 'Desativado'}"></span>
                                     </td>
                                     <td>
-                                        <a th:href="@{/admin/users/edit/{id}(id=${employee.id})}" class="btn btn-warning btn-sm">Editar</a>
+                                        <button th:if="${employee.active}"
+                                                th:data-id="${employee.id}" 
+                                                class="btn btn-warning btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editModal">Editar</button>
                                         <!-- Mostra o botão de desativação apenas se o usuário estiver ativo -->
                                         <button th:if="${employee.active}" 
                                                 th:data-id="${employee.id}" 
@@ -161,6 +244,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        
                         <!-- Alertas -->
                         <div th:if="${param.success}">
                             <div class="alert alert-success">

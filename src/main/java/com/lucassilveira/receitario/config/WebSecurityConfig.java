@@ -17,10 +17,10 @@ public class WebSecurityConfig {
         http
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/login", "/recover", "/reset-password", "/reset-password-success", "/css/**", "/js/**", "/images/**", "/templates/**").permitAll() // Permitir acesso sem autenticação
-                .requestMatchers("/admin/**"). hasRole("Administrador")
-                .requestMatchers("/chef/**"). hasRole("Cozinheiro")
-                .requestMatchers("/taster/**"). hasRole("Degustador")
-                .requestMatchers("/editor/**"). hasRole("Editor")
+                .requestMatchers("/admin/**").hasRole("Administrador")
+                .requestMatchers("/chef/**").hasRole("Cozinheiro")
+                .requestMatchers("/taster/**").hasRole("Degustador")
+                .requestMatchers("/editor/**").hasRole("Editor")
                 .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
             )   
             .formLogin((form) -> form
