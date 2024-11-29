@@ -14,7 +14,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Inserir novo usuário</h1>
+                <h1 class="modal-title fs-5">Inserir novo usuário</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -90,72 +90,56 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuário</h1>
+                <h1 class="modal-title fs-5">Editar usuário</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="justify-content-between w-100 d-flex flex-row" th:action="@{/admin/users}" method="post" id="registerForm">      
+                <form class="justify-content-between w-100 d-flex flex-row" th:action="@{/admin/edit-user}" method="post" id="editUserForm">      
                     <div class="d-flex flex-column justify-content-between" id="coluna">
                         <div>
                             <label class="fs-4" for="name">Nome Completo</label>
-                            <input type="text" name="name" class="form-control form-control-lg mb-2" id="name" placeholder="Digite o nome completo" required>
+                            <input type="text" name="name" class="form-control form-control-lg mb-2" id="employeeName" placeholder="Digite o nome completo" required>
                         </div>
                         <div>
                             <label class="fs-4" for="birthDate">Data de Nascimento</label>
-                            <input type="date" name="birthDate" class="form-control form-control-lg mb-2" id="birthDate">
+                            <input type="date" name="birthDate" class="form-control form-control-lg mb-2" id="employeeBirthDate" th:value="@{employee.birthDate}">
                         </div>
                         <div>
                             <label class="fs-4" for="email">E-mail</label>
-                            <input type="email" name="email" class="form-control form-control-lg mb-2" id="email" placeholder="exemplo@email.com" required>    
+                            <input type="email" name="email" class="form-control form-control-lg mb-2" id="employeeEmail" th:value="@{employee.email}" placeholder="exemplo@email.com" required>    
                         </div>
                         <div>
                             <label class="fs-4" for="username">Usuário</label>
-                            <input type="text" name="username" class="form-control form-control-lg mb-2" id="username" placeholder="Digite o usuário" required>
+                            <input type="text" name="username" class="form-control form-control-lg mb-2" id="employeeUsername" th:value="@{employee.username}" placeholder="Digite o usuário" required>
                         </div>
                         <div>
                             <label class="fs-4" for="admissionDate">Data de Admissão</label>
-                            <input type="date" name="admissionDate" class="form-control form-control-lg mb-2" id="admissionDate" required>
-                        </div>
-                        <div>
-                            <label class="fs-4" for="endDate">Data de Encerramento</label>
-                            <input type="date" name="endDate" class="form-control form-control-lg mb-2" id="endDate">
+                            <input type="date" name="admissionDate" class="form-control form-control-lg mb-2" id="employeeAdmissionDate" th:value="@{employee.admissionDate}"  readonly>
                         </div>
                     </div>
                     <div class="d-flex flex-column justify-content-between" id="coluna">
                         <div>
                             <label class="fs-4" for="tradeName">Nome Fantasia</label>
-                            <input type="text" name="tradeName" class="form-control form-control-lg mb-2" id="tradeName" placeholder="Digite o nome fantasia">
+                            <input type="text" name="tradeName" class="form-control form-control-lg mb-2" id="employeeTradeName" th:value="@{employee.tradeName}" placeholder="Digite o nome fantasia">
                         </div>
                         <div>
                             <label class="fs-4" for="rg">RG</label>
-                            <input type="text" name="rg" class="form-control form-control-lg mb-2" id="rg" placeholder="Digite o RG" required>    
+                            <input type="text" name="rg" class="form-control form-control-lg mb-2" id="employeeRg" th:value="@{employee.rg}" placeholder="Digite o RG" required>    
                         </div>
                         <div>
                             <label class="fs-4"for="salary">Salário</label>
-                            <input type="text" name="salary" class="form-control form-control-lg mb-2" id="salary" placeholder="R$">
+                            <input type="text" name="salary" class="form-control form-control-lg mb-2" id="employeeSalary" th:value="@{employee.salary}" placeholder="R$">
                         </div>
                         <div>
                             <label class="fs-4" for="password">Senha</label>
-                            <input type="password" name="password" class="form-control form-control-lg mb-2" id="password" placeholder="Digite a senha" required>
-                        </div>
-                        <div>
-                            <label class="fs-4" for="role">Atribuição do Usuário</label>
-                            <select class="form-select" name="role" id="role" aria-label="Default select example">
-                                <option selected>Atribuição</option>
-                                <option th:each="role : ${roles}"
-                                        th:value="${role.id}"
-                                        th:text="${role.name}"></option>
-                            </select>
-                        </div>
-                        <div>
-                            <button></button>
+                            <input type="password" name="password" class="form-control form-control-lg mb-2" id="employeePassword" th:value="@{employee.password}" placeholder="Digite a senha" required>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn btn-outline-secondary border border-2" data-bs-dismiss="modal" id="btn_secondary">Fechar</button>
-                <button type="submit" class="btn btn-primary" form="registerForm" id="btn_primary">Criar Usuário</button>
+                <button type="submit" class="btn btn-primary" form="editUserForm" id="btn_primary">Salvar Alterações</button>
             </div>
             </div>
         </div>
@@ -166,7 +150,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeactivateModalLabel">Confirmar Desativação</h5>
+                    <h5 class="modal-title" id="confirmDeactivateModalLabel">Atenção!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
@@ -228,14 +212,25 @@
                                     </td>
                                     <td>
                                         <button th:if="${employee.active}"
-                                                th:data-id="${employee.id}" 
+                                                th:data-id="${employee.id}"
+                                                th:data-name="${employee.name}"
+                                                th:data-birthdate="${employee.birthDate}"
+                                                th:data-email="${employee.email}"
+                                                th:data-username="${employee.username}"
+                                                th:data-admissiondate=""
+                                                th:data-tradename="${employee.tradeName}"
+                                                th:data-rg="${employee.rg}"
+                                                th:data-salary="${employee.salary}"
+                                                th:data-role="${employee.role.id}"
                                                 class="btn btn-warning btn-sm"
+                                                id="editar"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editModal">Editar</button>
                                         <!-- Mostra o botão de desativação apenas se o usuário estiver ativo -->
                                         <button th:if="${employee.active}" 
                                                 th:data-id="${employee.id}" 
                                                 class="btn btn-danger deactivate-btn"
+                                                id="desativar"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmDeactivateModal">Desativar</button>
                                         <!-- Não mostra os botões de ação para usuários desativados -->
@@ -270,12 +265,42 @@
     <script type="text/javascript" th:src="@{/js/background.js}"></script>
     <!-- JavaScript para abrir o modal -->
     <script>
-        document.querySelectorAll('.deactivate-btn').forEach(button => {
+        document.querySelectorAll('#desativar').forEach(button => {
             button.addEventListener('click', function() {
                 const employeeId = this.getAttribute('data-id');
                 console.log("Employee ID: ", employeeId);
                 document.getElementById('employeeId').value = employeeId; // Preenche o campo oculto
                 new bootstrap.Modal(document.getElementById('confirmDeactivateModal')).show(); // Exibe o modal
+            });
+        });
+    </script>
+    <script>
+        document.querySelectorAll('#editar').forEach(button => {
+            button.addEventListener('click', function() {
+                // Captura os dados do botão
+                const employeeId = this.getAttribute('data-id');
+                const employeeName = this.getAttribute('data-name');
+                const employeeBirthDate = this.getAttribute('data-birthdate');
+                const employeeEmail = this.getAttribute('data-email');
+                const employeeUsername = this.getAttribute('data-username');
+                const employeeTradeName = this.getAttribute('data-tradename');
+                const employeeRg = this.getAttribute('data-rg');
+                const employeeSalary = this.getAttribute('data-salary');
+                const employeeRole = this.getAttribute('data-role');
+    
+                // Preenche os campos do formulário no modal de edição
+                document.getElementById('employeeName').value = employeeName;
+                document.getElementById('employeeBirthDate').value = employeeBirthDate;
+                document.getElementById('employeeEmail').value = employeeEmail;
+                document.getElementById('employeeUsername').value = employeeUsername;
+                document.getElementById('employeeTradeName').value = employeeTradeName;
+                document.getElementById('employeeRg').value = employeeRg;
+                document.getElementById('employeeSalary').value = employeeSalary;
+                document.getElementById('employeeRole').value = employeeRole;
+                document.getElementById('employeeId').value = employeeId;
+    
+                // Exibe o modal
+                new bootstrap.Modal(document.getElementById('editModal')).show();
             });
         });
     </script>
