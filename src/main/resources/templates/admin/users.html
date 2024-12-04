@@ -4,6 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/telas_sistema.css}">
+    <link rel="stylesheet" th:href="@{/css/adminstyles/register.css}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Usuários</title>
@@ -14,11 +15,11 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Inserir novo usuário</h1>
+                <h1 class="modal-title fs-5" id="title">Inserir novo usuário</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="justify-content-between w-100 d-flex flex-row" th:action="@{/admin/users}" method="post" id="registerForm">      
+                <form class="justify-content-top w-100 d-flex flex-row" th:action="@{/admin/users}" method="post" id="registerForm">      
                     <div class="d-flex flex-column justify-content-between" id="coluna">
                         <div>
                             <label class="fs-4" for="name">Nome Completo</label>
@@ -45,7 +46,7 @@
                             <input type="date" name="endDate" class="form-control form-control-lg mb-2" id="endDate">
                         </div>
                     </div>
-                    <div class="d-flex flex-column justify-content-between" id="coluna">
+                    <div class="d-flex flex-column justify-content-top" id="coluna">
                         <div>
                             <label class="fs-4" for="tradeName">Nome Fantasia</label>
                             <input type="text" name="tradeName" class="form-control form-control-lg mb-2" id="tradeName" placeholder="Digite o nome fantasia">
@@ -65,15 +66,13 @@
                         <div>
                             <label class="fs-4" for="role">Atribuição do Usuário</label>
                             <select class="form-select" name="role" id="role" aria-label="Default select example">
-                                <option selected>Atribuição</option>
+                                <option selected></option>
                                 <option th:each="role : ${roles}"
                                         th:value="${role.id}"
                                         th:text="${role.name}"></option>
                             </select>
                         </div>
-                        <div>
-                            <button></button>
-                        </div>
+                        
                     </div>
                 </form>
             </div>
@@ -135,11 +134,12 @@
                             <input type="password" name="password" class="form-control form-control-lg mb-2" id="employeePassword" th:value="@{employee.password}" placeholder="Digite a senha" required>
                         </div>
                     </div>
+                    <input type="hidden" name="id" id="employeeIdEdit">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn btn-outline-secondary border border-2" data-bs-dismiss="modal" id="btn_secondary">Fechar</button>
-                <button type="submit" class="btn btn-primary" form="editUserForm" id="btn_primary">Salvar Alterações</button>
+                <button type="submit" class="btn btn-primary" form="editUserForm" id="btn_primary">Atualizar Usuário</button>
             </div>
             </div>
         </div>
@@ -157,10 +157,10 @@
                     Una vez que a conta é desativada, ela não poderá ser reativada. Caso o usuário precise voltar a utilizar o sistema no futuro, será necessário criar uma nova conta para ele. Tem certeza que deseja desativar o usuário?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn btn-outline-secondary border border-2" data-bs-dismiss="modal" id="btn_secondary">Fechar</button>
                     <form th:action="@{/admin/deactivate}" method="post" id="deactivateForm">
-                        <input type="hidden" name="id" id="employeeId">
-                        <button type="submit" class="btn btn-danger">Desativar</button>
+                        <input type="hidden" name="id" id="employeeIdDeactivate">
+                        <button type="submit" id="desativar_usuario" class="btn btn-danger">Desativar</button>
                     </form>
                 </div>
             </div>
@@ -171,7 +171,7 @@
     <div class="background-container">
         <div th:insert="~{layouts/offcanvas/admin-offcanvas.html :: offcanvas}"></div>
         <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="conteudo">
-            <div th:insert="~{layouts/menu/admin-menu.html :: menu}"></div>    
+            <div th:insert="~{layouts/menu/menu.html :: menu}"></div>    
             <div id="dados">          
                 <div class="d-flex justify-content-between p-0 mb-2" id="topo">
                     <div class="container ps-0 pb-0">
@@ -188,53 +188,49 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nome Completo</th>
-                                    <th>Nome Fantasia</th>
-                                    <th>RG</th>
-                                    <th>Cargo</th>
-                                    <th>Data de Admissão</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
+                                    <th class="tabela_titulo" id="tabela_id">#</th>
+                                    <th class="tabela_titulo" id="tabela_nome">Nome Completo</th>
+                                    <th class="tabela_titulo" id="tabela_nome">Nome Fantasia</th>
+                                    <th class="tabela_titulo" id="tabela_cargo">Cargo</th>
+                                    <th class="tabela_titulo" id="tabela_status">Status</th>
+                                    <th class="tabela_titulo" id="tabela_acoes">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="employee : ${employees}">
-                                    <td th:text="${employee.id}"></td>
-                                    <td th:text="${employee.name}"></td>
-                                    <td th:text="${employee.tradeName}"></td>
-                                    <td th:text="${employee.rg}"></td>
-                                    <td th:text="${employee.role.name}"></td>
-                                    <td th:text="${employee.admissionDate}"></td>
-                                    <td>
+                                <tr id="tabela_linha" th:each="employee : ${employees}">
+                                    <td class="tabela_info" id="tabela_id" th:text="${employee.id}"></td>
+                                    <td class="tabela_info" id="tabela_nome" th:text="${employee.name}"></td>
+                                    <td class="tabela_info" id="tabela_nome" th:text="${employee.tradeName}"></td>
+                                    <td class="tabela_info" id="tabela_cargo" th:text="${employee.role.name}"></td>
+                                    <td class="tabela_info" id="tabela_status">
                                         <!-- Exibe "Desativado" se o usuário estiver inativo -->
                                         <span th:text="${employee.active ? 'Ativo' : 'Desativado'}"></span>
                                     </td>
-                                    <td>
+                                    <td class="tabela_info" id="tabela_acoes">
                                         <button th:if="${employee.active}"
                                                 th:data-id="${employee.id}"
                                                 th:data-name="${employee.name}"
                                                 th:data-birthdate="${employee.birthDate}"
                                                 th:data-email="${employee.email}"
                                                 th:data-username="${employee.username}"
-                                                th:data-admissiondate=""
+                                                th:data-admissiondate="@{employee.admissionDate}"
                                                 th:data-tradename="${employee.tradeName}"
                                                 th:data-rg="${employee.rg}"
                                                 th:data-salary="${employee.salary}"
                                                 th:data-role="${employee.role.id}"
-                                                class="btn btn-warning btn-sm"
+                                                class="btn btn-warning"
                                                 id="editar"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editModal">Editar</button>
                                         <!-- Mostra o botão de desativação apenas se o usuário estiver ativo -->
                                         <button th:if="${employee.active}" 
                                                 th:data-id="${employee.id}" 
-                                                class="btn btn-danger deactivate-btn"
+                                                class="btn deactivate-btn"
                                                 id="desativar"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#confirmDeactivateModal">Desativar</button>
                                         <!-- Não mostra os botões de ação para usuários desativados -->
-                                        <button th:if="${!employee.active}" class="btn btn-secondary" disabled>Desativado</button>
+                                        <button th:if="${!employee.active}" class="btn btn-secondary" id="desativado" disabled>Desativado</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -269,12 +265,10 @@
             button.addEventListener('click', function() {
                 const employeeId = this.getAttribute('data-id');
                 console.log("Employee ID: ", employeeId);
-                document.getElementById('employeeId').value = employeeId; // Preenche o campo oculto
+                document.getElementById('employeeIdDeactivate').value = parseInt(employeeId); // Preenche o campo oculto
                 new bootstrap.Modal(document.getElementById('confirmDeactivateModal')).show(); // Exibe o modal
             });
         });
-    </script>
-    <script>
         document.querySelectorAll('#editar').forEach(button => {
             button.addEventListener('click', function() {
                 // Captura os dados do botão
@@ -289,6 +283,7 @@
                 const employeeRole = this.getAttribute('data-role');
     
                 // Preenche os campos do formulário no modal de edição
+                document.getElementById('employeeIdEdit').value = employeeId;
                 document.getElementById('employeeName').value = employeeName;
                 document.getElementById('employeeBirthDate').value = employeeBirthDate;
                 document.getElementById('employeeEmail').value = employeeEmail;
@@ -297,7 +292,6 @@
                 document.getElementById('employeeRg').value = employeeRg;
                 document.getElementById('employeeSalary').value = employeeSalary;
                 document.getElementById('employeeRole').value = employeeRole;
-                document.getElementById('employeeId').value = employeeId;
     
                 // Exibe o modal
                 new bootstrap.Modal(document.getElementById('editModal')).show();

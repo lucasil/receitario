@@ -96,17 +96,16 @@ public class EmployeeController {
 
     // Edita o usuário
     @PostMapping("/admin/edit-user")
-    public String editUser(@ModelAttribute Employee employee,
-                            @RequestParam("role") int roleId) {
+    public String editUser(@ModelAttribute Employee employee) {
         // Lógica para atualizar o usuário no banco, com a segurança da senha
         Employee existingEmployee = employeeRepository.findById(employee.getId()).orElse(null);
 
         if (existingEmployee == null) {
             return "redirect:/admin/users?error=user-not-found";
         }
+        
         // Mantém o papel original (role) do usuário, já que o campo de role é desabilitado
-        Role role = roleRepository.findById(roleId);
-        existingEmployee.setRole(role);
+        existingEmployee.setRole(existingEmployee.getRole());
         existingEmployee.setName(employee.getName());
         existingEmployee.setEmail(employee.getEmail());
         existingEmployee.setUsername(employee.getUsername());

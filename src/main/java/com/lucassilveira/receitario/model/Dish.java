@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "dish")
@@ -22,7 +22,7 @@ public class Dish {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "Insira a quantidade de um ingrediente")
+    @NotNull
     @Column(name = "qty")
     private double qty;
 
@@ -39,12 +39,6 @@ public class Dish {
     @JoinColumn(name = "ingredient_id",
                 nullable = true)
     private Ingredient ingredient;
-
-    @ManyToOne(fetch = FetchType.EAGER,
-                optional = true)
-    @JoinColumn(name = "dish_category", 
-                nullable = true)
-    private DishCategory dishCategory;
 
     @ManyToOne(fetch = FetchType.EAGER,
                 optional = true)
@@ -84,14 +78,6 @@ public class Dish {
 
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
-    }
-
-    public DishCategory getDishCategory() {
-        return dishCategory;
-    }
-
-    public void setDishCategory(DishCategory dishCategory) {
-        this.dishCategory = dishCategory;
     }
 
     public Recipe getRecipe() {

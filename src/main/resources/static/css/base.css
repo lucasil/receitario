@@ -27,7 +27,8 @@ body, html{
 
 #dados input[type="text"]::placeholder, 
 #dados input[type="password"]::placeholder,
-#dados input[type="email"]::placeholder{
+#dados input[type="email"]::placeholder, 
+#dados textarea::placeholder{
     color: #B6B6B6;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -41,7 +42,8 @@ body, html{
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
-    font-style: normal;color: #B5651D;
+    font-style: normal;
+    color: #B5651D;
     border: 0px;
 }
 
@@ -59,7 +61,10 @@ body, html{
 }
 
 #btn_secondary{
-    font-family: "MontserratMedium";
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
     color: #B5651D;
     border-color: #B5651D !important;
 }

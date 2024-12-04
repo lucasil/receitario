@@ -9,17 +9,47 @@
     <title> Lista de Categorias</title>
 </head>
 <body>
+     <!-- Modal Novo Ingrediente -->
+     <div class="modal fade" id="newCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="title">Cadastrar nova categoria</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="justify-content-top w-100 d-flex flex-row" th:action="@{/admin/dish-categories}" method="post" id="registerForm">      
+                    <div class="d-flex flex-column justify-content-between">
+                        <div>
+                            <label class="fs-4" for="name">Nome da Categoria</label>
+                            <input type="text" name="name" class="form-control form-control-lg mb-2" id="name" placeholder="Digite o nome ds categoria" required>
+                        </div>
+                        <div>
+                            <label class="fs-4" for="ingredient_description">Descrição da Categoria</label>
+                            <textarea class="form-control" rows="3" name="description" id="description" placeholder="Insira uma descrição para a categoria" required></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn btn-outline-secondary border border-2" data-bs-dismiss="modal" id="btn_secondary">Fechar</button>
+                <button type="submit" class="btn btn-primary" form="registerForm" id="btn_primary">Cadastrar Categoria</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <div class="background-container">
         <div th:insert="~{layouts/offcanvas/admin-offcanvas.html :: offcanvas}"></div>
         <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="conteudo">
-            <div th:insert="~{layouts/menu/admin-menu.html :: menu}"></div>    
+            <div th:insert="~{layouts/menu/menu.html :: menu}"></div>    
             <div id="dados">          
                 <div class="d-flex justify-content-between p-0 mb-2" id="topo">
                     <div class="container ps-0 pb-0">
                         <h1 class="h1 mb-0" id="title">Lista de Categorias</h1>
                     </div>
                     <div class="container d-flex row justify-content-end" id="submit">
-                        <a th:href="@{/admin/register}" class="btn btn-primary border border-2 w-50 me-2" id="btn_primary">Nova Categoria</a>
+                        <button class="btn btn-primary border border-2 w-50 me-2" id="btn_primary" data-bs-toggle="modal" data-bs-target="#newCategoryModal">Nova Categoria</button>
                         <a th:href="@{/admin/home}" class="btn btn-outline-secondary border border-2 w-25" id="btn_secondary">Voltar</a>
                     </div>
                 </div>
@@ -28,24 +58,26 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td>ID</td>
-                                    <td>Categoria</td>
-                                    <td>Descrição</td>
-                                    <td>Ações</td>
+                                    <th class="tabela_titulo" id="tabela_id">#</th>
+                                    <th class="tabela_titulo" id="tabela_nome">Categoria</th>
+                                    <th class="tabela_titulo">Descrição</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="dishCategory : ${dishCategories}">
-                                    <td th:text="${dishCategory.id}"></td>
-                                    <td th:text="${dishCategory.name}"></td>
-                                    <td th:text="${dishCategory.description}"></td>
-                                    <td>
-                                        <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
-                                        <a th:href="@{/}" class="btn btn-warning btn-sm">Excluir</a>
-                                    </td>
+                                    <td class="tabela_info" id="tabela_id" th:text="${dishCategory.id}"></td>
+                                    <td class="tabela_info" id="tabela_nome" th:text="${dishCategory.name}"></td>
+                                    <td class="tabela_info" th:text="${dishCategory.description}"></td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <!-- Alertas -->
+                        <div th:if="${param.success}">
+                            <div class="alert alert-success">
+                                Usuário criado com sucesso!
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

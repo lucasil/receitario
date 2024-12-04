@@ -6,20 +6,21 @@
     <link rel="stylesheet" th:href="@{/css/telas_sistema.css}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Atribuições</title>
+    <title>Suas Receitas</title>
 </head>
-<body>
+<body>   
     <div class="background-container">
-        <div th:insert="~{layouts/offcanvas/admin-offcanvas.html :: offcanvas}"></div>
+        <div th:insert="~{layouts/offcanvas/chef-offcanvas.html :: offcanvas}"></div>
         <div class="p-3 shadow p-3 mb-5 position-absolute top-50 start-50 translate-middle" id="conteudo">
             <div th:insert="~{layouts/menu/menu.html :: menu}"></div>    
             <div id="dados">          
                 <div class="d-flex justify-content-between p-0 mb-2" id="topo">
                     <div class="container ps-0 pb-0">
-                        <h1 class="h1 mb-0" id="title">Lista de Atribuições</h1>
+                        <h1 class="h1 mb-0" id="title">Suas Receitas</h1>
                     </div>
                     <div class="container d-flex row justify-content-end" id="submit">
-                        <a th:href="@{/admin/home}" class="btn btn-outline-secondary border border-2 w-25" id="btn_secondary">Voltar</a>
+                        <a th:href="@{/chef/new-recipe}" class="btn btn-primary border border-2 w-50 me-2" id="btn_primary">Nova Receita</a>
+                        <a th:href="@{/chef/home}" class="btn btn-outline-secondary border border-2 w-25" id="btn_secondary">Voltar</a>
                     </div>
                 </div>
                 <div class="rounded py-2 px-4" id="area_sistema">
@@ -27,16 +28,24 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td class="tabela_titulo" id="tabela_id">#</td>
-                                    <td class="tabela_titulo" id="tabela_nome">Atribuição</td>
-                                    <td class="tabela_titulo">Descrição</td>
+                                    <td class="tabela_titulo" id="tabela_nome">Receita</td>
+                                    <td class="tabela_titulo">Rendimento</td>
+                                    <td class="tabela_titulo">Categoria da Receita</td>
+                                    <td class="tabela_titulo">Ações</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="role : ${roles}">
-                                    <td class="tabela_info" id="tabela_id" th:text="${role.id}"></td>
-                                    <td class="tabela_info" id="tabela_nome" th:text="${role.name}"></td>
-                                    <td class="tabela_info" th:text="${role.description}"></td>
+                                <tr th:each="recipe : ${recipes}">
+                                    <td class="tabela_info" id="tabela_nome" th:text="${recipe.name}"></td>
+                                    <td class="tabela_info" th:text="${recipe.portion} + ' porções'"></td>
+                                    <td class="tabela_info" th:text="${recipe.dishCategory.name}"></td>
+                                    <td class="tabela_info">
+                                        <!-- Botões de Ação -->
+                                        <a th:href="@{'/chef/edit-recipe/' + ${recipe.id}}" class="btn btn-warning btn-sm me-2">Editar</a>
+                                        <a th:href="@{'/chef/recipe/' + ${recipe.id}}" class="btn btn-info btn-sm me-2">Ver Receita</a>
+                                        <!-- Botão de deletar com modal -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-id="${recipe.id}">Deletar</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

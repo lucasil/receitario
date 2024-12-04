@@ -5,10 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import com.lucassilveira.receitario.model.Ingredient;
 import com.lucassilveira.receitario.repository.IngredientRepository;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IngredientController {
@@ -31,4 +37,18 @@ public class IngredientController {
         return "admin/ingredients";
     }
     
+    @PostMapping("/admin/ingredients")
+    public String mewIngredient(@ModelAttribute @Valid Ingredient ingredient,
+                                BindingResult bindingResult) {
+        // Se houver erros de validação, retorne para o formulário com os erros
+        if (bindingResult.hasErrors()) {
+            return "admin/ingredients";
+        }
+
+        // Salva o novo usuário no banco de dados
+        ingredientRepository.save(ingredient);
+
+        return "redirect:/admin/ingredients?success"; // Redireciona com mensagem de sucesso
+    }
+
 }

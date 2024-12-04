@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "recipe")
@@ -36,11 +37,11 @@ public class Recipe {
     @Column(name = "preparation_method")
     private String preparationMethod;
 
-    @NotBlank(message = "Insira o número de porções")
+    @NotNull
     @Column(name = "portion")
     private int portion;
 
-    @NotBlank(message = "Insira o tempo de preparo")
+    @NotNull
     @Column(name = "preparation_time")
     private int preparationTime;
 
@@ -58,6 +59,12 @@ public class Recipe {
     @JoinColumn(name = "chef_id", 
                 nullable = true)
     private Employee chefEmployee;
+
+    @ManyToOne(fetch = FetchType.EAGER,
+                optional = true)
+    @JoinColumn(name = "dish_category_id", 
+                nullable = true)
+    private DishCategory dishCategory;
 
     @OneToMany(mappedBy = "recipe",
                 fetch = FetchType.LAZY)
@@ -139,6 +146,14 @@ public class Recipe {
 
     public void setChefEmployee(Employee chefEmployee) {
         this.chefEmployee = chefEmployee;
+    }
+
+    public DishCategory getDishCategory() {
+        return dishCategory;
+    }
+
+    public void setDishCategory(DishCategory dishCategory) {
+        this.dishCategory = dishCategory;
     }
 
     public List<Publication> getPublications() {

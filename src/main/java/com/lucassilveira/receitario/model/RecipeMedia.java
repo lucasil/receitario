@@ -39,12 +39,6 @@ public class RecipeMedia {
                 nullable = true)
     private Recipe recipe;
 
-    @ManyToOne(fetch = FetchType.EAGER,
-                optional = true)
-    @JoinColumn(name = "media_type_id", 
-                nullable = true)
-    private MediaType mediaType;
-
     // Getters and Setters
 
     public int getId() {
@@ -77,14 +71,6 @@ public class RecipeMedia {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
-    }
-
-    public MediaType getMediaType() {
-        return mediaType;
-    }
-
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
     }
 
 } // Recipe Media Entity

@@ -91,6 +91,115 @@ body{
     box-shadow: 1px 1px 5px 2px #b6b6b6;
 }
 
+#area_sistema_receitas {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Modal */
+#desativar_usuario{
+    width: 100%;
+    background-color: #FF6347;
+    border-color: #FFC300 !important;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #ffffff;
+    border: 1px;
+}
+
+/* Tabela */
 #tabela{
-    width: 98%;
+    width: 100%;
+}
+
+.tabela_titulo {
+    color: #b5651d !important;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.tabela_info {
+    color: #B6B6B6 !important;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+#tabela_id {
+    width: 3%;
+    text-align: center;
+}
+
+#tabela_nome {
+    width: 25%;
+    text-align: left;
+}
+
+#tabela_cargo {
+    width: 14%;
+    text-align: left;
+}
+
+#tabela_status{
+    width: 13%;
+    text-align: left;
+}
+
+#tabela_acoes {
+    width: 20%;
+    text-align: center;
+}
+
+#editar{
+    width: 45%;
+    height: 49%;
+    background-color: #FFC300;
+    border-color: #FFC300 !important;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #B5651D;
+    border: 0px;
+}
+
+#editar:hover{
+    background-color: #FFE180;
+    border-color: #FFE180 !important;
+}
+
+#desativar{
+    width: 45%;
+    height: 49%;
+    background-color: #FF6347;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #ffffff;
+    border: 0px;
+}
+
+#desativar:hover{
+    background-color: #ff8974;
+}
+
+#desativado{
+    width: 90%;
+    height: 49%;
+    background-color: #B6B6B6;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #ffffff;
+    border: 0px;
 }

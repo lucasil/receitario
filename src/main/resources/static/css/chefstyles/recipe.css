@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+#coluna_esquerda_receita {
+    width: 49%;
+    background-color: #b9afa7;
+}
+
+#coluna_direita_receita {
+    width: 49%;
+    height: 100%;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-y: auto;
+    box-shadow: 1px 1px 5px 2px #b6b6b6 !important;
+}
+
+#coluna_info_receita {
+    width: 23%;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+#coluna_dados_receita {
+    width: 73%;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+#add-ingrediente {
+    width: 100%;
+    background-color:transparent;
+    border-radius:5px;
+    border:3px dashed #b6b6b6;
+    display:inline-block;
+    cursor:pointer;
+    color:#b6b6b6;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size:17px;
+    padding:16px 31px;
+    text-decoration:none;
+}
+
+#add-ingrediente:hover {
+        background-color:transparent;
+}

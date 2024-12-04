@@ -37,7 +37,7 @@ public class DishCategory {
 
     @OneToMany(mappedBy = "dishCategory",
                 fetch = FetchType.LAZY)
-    private List<Dish> dishes;
+    private List<Recipe> recipes;
 
     // Getters and Setters
 
@@ -65,12 +65,12 @@ public class DishCategory {
         this.description = description;
     }
 
-    public List<Dish> getDishes() {
-        return dishes;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
 } // Dish Category Entity
