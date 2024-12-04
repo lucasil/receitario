@@ -94,6 +94,65 @@ public class RecipeController {
         return "chef/new-recipe";
     }
 
+    @PostMapping("/chef/new-recipe")
+    public String createRecipe(@PathVariable("id") Long id, Model model) {
+        
+        System.out.println("Receita: " + recipe);
+
+        Employee chefEmployee = chefService.getLoggedInChef();
+
+        if (chefEmployee == null) {
+            throw new IllegalArgumentException("Chef não logado!");
+        }
+
+        // Associa o chef à receita
+        recipe.setChefEmployee(chefEmployee);
+
+        // Salvar a receita
+        recipeRepository.save(recipe);
+
+        // Salvar os ingredientes associados à receita
+        for(int i = 0; i < ingredientIds.size(); i++){
+            Optional<Ingredient> optionalIngredient = ingredientRepository.findById(ingredientIds.get(i));
+            Optional<Measure> optionalMeasure = measureRepository.findById(measureIds.get(i));
+
+            if (optionalIngredient.isPresent() && optionalMeasure.isPresent()) {
+                Ingredient ingredient = optionalIngredient.get();
+                Measure measure = optionalMeasure.get();
+                double quantity = quantities.get(i);
+
+                Dish dish = new Dish();
+                dish.setRecipe(recipe);
+                dish.setIngredient(ingredient);
+                dish.setMeasure(measure);
+                dish.setQty(quantity);
+
+                dishRepository.save(dish);
+            } else {
+                System.out.println("Ingredient or Measure not found for IDs: " + ingredientIds.get(i) + ", " + measureIds.get(i));
+            }
+        }
+
+         // Se existirem arquivos de mídia, salva-os
+         if (mediaFiles != null && mediaFiles.length > 0) {
+            for (MultipartFile file : mediaFiles) {
+                try {
+                    RecipeMedia media = new RecipeMedia();
+                    media.setRecipe(recipe);
+                    media.setMedia(file.getBytes());
+                    recipeMediaRepository.save(media);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Gerenciar erros de I/O
+                    model.addAttribute("error", "Erro ao salvar arquivos de mídia.");
+                    return "chef/new-recipe";
+                }
+            }
+        }
+
+        return "redirect:/chef/recipes?success";
+    }
+
     @GetMapping("/chef/edit-recipe/{id}")
     public String editRecipe(@PathVariable("id") Integer id, Model model) {
         // Obtém o chef logado
